@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://btiu24y8gtg53"]
+
+[ext_resource type="PackedScene" uid="uid://cv6wfeqjdyiuf" path="res://Objects/chest.tscn" id="1_2jq50"]
+[ext_resource type="Script" path="res://Code/Classes/LootTables/loot_table.gd" id="2_xns5h"]
+[ext_resource type="Script" path="res://Code/Classes/LootTables/loot_item.gd" id="3_hmm4h"]
+
+[node name="MaximumTestChest" instance=ExtResource("1_2jq50")]
+
+[node name="Sprite2D" parent="." index="1"]
+modulate = Color(0.643137, 0.188235, 0.0627451, 1)
+
+[node name="LootTable" type="Node" parent="." index="3"]
+script = ExtResource("2_xns5h")
+loot_table_name = "MaximumTestChestLootTable"
+description = "Common Helm 85% (Max 1)
+Stick 30% (Max 2)
+Bronze Coin 5%"
+number_of_results_range = Array[int]([8, 11])
+
+[node name="StickLootItem" type="Node" parent="LootTable" index="0"]
+script = ExtResource("3_hmm4h")
+loot = "Stick"
+weight = 0.3
+maximum_value = 2
+
+[node name="CommonHelmLootItem" type="Node" parent="LootTable" index="1"]
+script = ExtResource("3_hmm4h")
+loot = "Common Helm"
+weight = 0.85
+maximum_value = 1
+
+[node name="BronzeCoinLootItem" type="Node" parent="LootTable" index="2"]
+script = ExtResource("3_hmm4h")
+loot = "Bronze Coin"
+weight = 0.05

@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=3 uid="uid://2tkug58qu3vb"]
+
+[ext_resource type="PackedScene" uid="uid://cv6wfeqjdyiuf" path="res://Objects/chest.tscn" id="1_3h0tg"]
+[ext_resource type="Script" path="res://Code/Classes/LootTables/loot_table.gd" id="2_7hd12"]
+[ext_resource type="Script" path="res://Code/Classes/LootTables/loot_item.gd" id="3_skflt"]
+
+[node name="GuardianFunChest" instance=ExtResource("1_3h0tg")]
+
+[node name="Sprite2D" parent="." index="1"]
+modulate = Color(0.0836, 0.10406, 0.22, 1)
+
+[node name="LootTable" type="Node" parent="." index="3"]
+script = ExtResource("2_7hd12")
+loot_table_name = "GuardianLootTable"
+description = null
+number_of_results_range = Array[int]([10, 12])
+nested_loot_global_psuedo_randomness = null
+use_children_as_loot = null
+seperate_nested_loot_tables = null
+use_nested_names = null
+
+[node name="AncientScrewLootItem" type="Node" parent="LootTable" index="0"]
+script = ExtResource("3_skflt")
+loot = "Ancient Screw"
+description = null
+weight = 35.0
+minimum_value = null
+maximum_value = null
+
+[node name="AncientSpringLootItem" type="Node" parent="LootTable" index="1"]
+script = ExtResource("3_skflt")
+loot = "Ancient Spring"
+description = null
+weight = 26.0
+minimum_value = null
+maximum_value = null
+
+[node name="AncientGearLootItem" type="Node" parent="LootTable" index="2"]
+script = ExtResource("3_skflt")
+loot = "Ancient Gear"
+description = null
+weight = 21.0
+minimum_value = null
+maximum_value = null
+
+[node name="AncientShaftLootItem" type="Node" parent="LootTable" index="3"]
+script = ExtResource("3_skflt")
+loot = "Ancient Shaft"
+description = null
+weight = 15.0
+minimum_value = null
+maximum_value = null
+
+[node name="AncientCoreLootItem" type="Node" parent="LootTable" index="4"]
+script = ExtResource("3_skflt")
+loot = "Ancient Core"
+description = null
+weight = 2.5
+minimum_value = null
+maximum_value = null
+
+[node name="GiantAncientCoreLootItem" type="Node" parent="LootTable" index="5"]
+script = ExtResource("3_skflt")
+loot = "Giant Ancient Core"
+description = null
+weight = 0.5
+minimum_value = null
+maximum_value = null

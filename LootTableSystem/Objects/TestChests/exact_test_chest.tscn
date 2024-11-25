@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0gic8nube6s8"]
+
+[ext_resource type="PackedScene" uid="uid://cv6wfeqjdyiuf" path="res://Objects/chest.tscn" id="1_bhdwt"]
+[ext_resource type="Script" path="res://Code/Classes/LootTables/loot_table.gd" id="2_8menn"]
+[ext_resource type="Script" path="res://Code/Classes/LootTables/loot_item.gd" id="3_ocr7q"]
+
+[node name="ExactTestChest" instance=ExtResource("1_bhdwt")]
+
+[node name="Sprite2D" parent="." index="1"]
+modulate = Color(1, 1, 1, 1)
+
+[node name="LootTable" type="Node" parent="." index="3"]
+script = ExtResource("2_8menn")
+loot_table_name = "ExactTestChestLootTable"
+number_of_results_range = Array[int]([3, 4])
+
+[node name="ScrollOfWisdomLootItem" type="Node" parent="LootTable" index="0"]
+script = ExtResource("3_ocr7q")
+loot = "Scroll of Wisdom"
+weight = 500.0
+minimum_value = 1
+maximum_value = 1
+
+[node name="DustMiteLootItem" type="Node" parent="LootTable" index="1"]
+script = ExtResource("3_ocr7q")
+weight = 0.7
+maximum_value = 2
+
+[node name="KeyLootItem" type="Node" parent="LootTable" index="2"]
+script = ExtResource("3_ocr7q")
+loot = "Key"
+weight = 0.3

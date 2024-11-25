@@ -1,0 +1,84 @@
+[gd_scene load_steps=13 format=3 uid="uid://bty4vsjkiajnk"]
+
+[ext_resource type="PackedScene" uid="uid://dil84ebumtx5r" path="res://Objects/player.tscn" id="1_qrvro"]
+[ext_resource type="PackedScene" uid="uid://b52jisxgs4eo2" path="res://Objects/TestChests/basic_test_chest.tscn" id="2_7k6w1"]
+[ext_resource type="PackedScene" uid="uid://btiu24y8gtg53" path="res://Objects/TestChests/maximum_test_chest.tscn" id="3_cj1mw"]
+[ext_resource type="PackedScene" uid="uid://b8o6vlusg8ds4" path="res://Objects/TestChests/minimum_test_chest.tscn" id="4_hg2y6"]
+[ext_resource type="PackedScene" uid="uid://t110vn8x7l21" path="res://Objects/TestChests/minimum_and_maximum_test_chest.tscn" id="5_eh7rl"]
+[ext_resource type="PackedScene" uid="uid://b0gic8nube6s8" path="res://Objects/TestChests/exact_test_chest.tscn" id="6_7vcda"]
+[ext_resource type="PackedScene" uid="uid://b4mjjg3ct0ta2" path="res://Objects/TestChests/nested_loot_table_test_chest.tscn" id="7_tykls"]
+[ext_resource type="PackedScene" uid="uid://c4jdg0l6c681i" path="res://Objects/TestChests/number_of_results_range_as_loot_table_test_chest.tscn" id="8_785xv"]
+[ext_resource type="PackedScene" uid="uid://2tkug58qu3vb" path="res://Objects/FunChests/guardian_fun_chest.tscn" id="9_163xu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qbabf"]
+size = Vector2(20, 688)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cfnvf"]
+size = Vector2(20, 688)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_denbf"]
+size = Vector2(1151.5, 20)
+
+[node name="LootTableSystemMainTest" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_qrvro")]
+position = Vector2(576, 324)
+
+[node name="Walls" type="Node2D" parent="."]
+visible = false
+
+[node name="Wall0" type="StaticBody2D" parent="Walls"]
+position = Vector2(-10, -10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall0"]
+position = Vector2(0, 334)
+shape = SubResource("RectangleShape2D_qbabf")
+
+[node name="Wall1" type="StaticBody2D" parent="Walls"]
+position = Vector2(1162, -9)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall1"]
+position = Vector2(0, 333)
+shape = SubResource("RectangleShape2D_cfnvf")
+
+[node name="Wall2" type="StaticBody2D" parent="Walls"]
+position = Vector2(452, -27)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall2"]
+position = Vector2(124.25, 17)
+shape = SubResource("RectangleShape2D_denbf")
+
+[node name="Wall3" type="StaticBody2D" parent="Walls"]
+position = Vector2(452, 641)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall3"]
+position = Vector2(124.25, 17)
+shape = SubResource("RectangleShape2D_denbf")
+
+[node name="TestChests" type="Node2D" parent="."]
+
+[node name="BasicTestChest" parent="TestChests" instance=ExtResource("2_7k6w1")]
+position = Vector2(60, 60)
+
+[node name="MaximumTestChest" parent="TestChests" instance=ExtResource("3_cj1mw")]
+position = Vector2(160, 60)
+
+[node name="MinimumTestChest" parent="TestChests" instance=ExtResource("4_hg2y6")]
+position = Vector2(260, 60)
+
+[node name="MinimumAndMaximumTestChest" parent="TestChests" instance=ExtResource("5_eh7rl")]
+position = Vector2(360, 60)
+
+[node name="ExactTestChest" parent="TestChests" instance=ExtResource("6_7vcda")]
+position = Vector2(460, 60)
+
+[node name="NestedLootTableTestChest" parent="TestChests" instance=ExtResource("7_tykls")]
+position = Vector2(560, 60)
+
+[node name="NumberOfResultsRangeAsLootTableTestChest" parent="TestChests" instance=ExtResource("8_785xv")]
+position = Vector2(660, 60)
+
+[node name="FunChests" type="Node2D" parent="."]
+
+[node name="GuardianFunChest" parent="FunChests" instance=ExtResource("9_163xu")]
+position = Vector2(60, 580)

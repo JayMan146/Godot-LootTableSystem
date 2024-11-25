@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://b52jisxgs4eo2"]
+
+[ext_resource type="PackedScene" uid="uid://cv6wfeqjdyiuf" path="res://Objects/chest.tscn" id="1_ec5gv"]
+[ext_resource type="Script" path="res://Code/Classes/LootTables/loot_table.gd" id="2_hdew8"]
+[ext_resource type="Script" path="res://Code/Classes/LootTables/loot_item.gd" id="3_k1622"]
+
+[node name="BasicTestChest" instance=ExtResource("1_ec5gv")]
+
+[node name="LootTable" type="Node" parent="." index="3"]
+script = ExtResource("2_hdew8")
+loot_table_name = "BasicTestChestLootTable"
+description = "55% Chance for Silver Coin
+20% Chance for Bone
+15% Chance for Gold Coin
+10% Chance for Potion"
+number_of_results_range = Array[int]([4, 7])
+
+[node name="SilverCoinLootItem" type="Node" parent="LootTable" index="0"]
+script = ExtResource("3_k1622")
+loot = "Silver Coin"
+weight = 0.55
+
+[node name="GoldCoinLootItem" type="Node" parent="LootTable" index="1"]
+script = ExtResource("3_k1622")
+loot = "Gold Coin"
+weight = 0.15
+
+[node name="BoneLootItem" type="Node" parent="LootTable" index="2"]
+script = ExtResource("3_k1622")
+loot = "Bone"
+weight = 0.2
+
+[node name="PotionLootItem" type="Node" parent="LootTable" index="3"]
+script = ExtResource("3_k1622")
+loot = "Potion"
+weight = 0.1

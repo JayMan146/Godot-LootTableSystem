@@ -1,0 +1,59 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4jdg0l6c681i"]
+
+[ext_resource type="PackedScene" uid="uid://cv6wfeqjdyiuf" path="res://Objects/chest.tscn" id="1_84psa"]
+[ext_resource type="Script" path="res://Code/Classes/LootTables/loot_table.gd" id="2_xw3bc"]
+[ext_resource type="Script" path="res://Code/Classes/LootTables/loot_item.gd" id="3_0wy42"]
+
+[node name="NumberOfResultsRangeAsLootTableTestChest" instance=ExtResource("1_84psa")]
+
+[node name="Sprite2D" parent="." index="1"]
+modulate = Color(0.23, 0.23, 0.23, 1)
+
+[node name="LootTable" type="Node" parent="." index="3" node_paths=PackedStringArray("number_of_results_range_loot_table")]
+script = ExtResource("2_xw3bc")
+loot_table_name = "NumberOfResultsRangeAsLootTableTestChestLootTable"
+description = "Bread 40%
+Jam 35%
+Honey 25%"
+number_of_results_range = Array[int]([])
+number_of_results_range_loot_table = NodePath("NumberOfResultsRangeLootTable")
+
+[node name="NumberOfResultsRangeLootTable" type="Node" parent="LootTable" index="0"]
+script = ExtResource("2_xw3bc")
+description = "4 80%
+5 15%
+6 5%"
+
+[node name="4LootItem" type="Node" parent="LootTable/NumberOfResultsRangeLootTable" index="0"]
+script = ExtResource("3_0wy42")
+loot = "4"
+weight = 0.8
+
+[node name="5LootItem" type="Node" parent="LootTable/NumberOfResultsRangeLootTable" index="1"]
+script = ExtResource("3_0wy42")
+loot = "5"
+weight = 0.15
+
+[node name="6LootItem" type="Node" parent="LootTable/NumberOfResultsRangeLootTable" index="2"]
+script = ExtResource("3_0wy42")
+loot = "6"
+weight = 0.05
+
+[node name="BreadLootItem" type="Node" parent="LootTable" index="1"]
+script = ExtResource("3_0wy42")
+loot = "Bread"
+weight = 0.4
+minimum_value = 1
+maximum_value = 3
+
+[node name="JamLootItem" type="Node" parent="LootTable" index="2"]
+script = ExtResource("3_0wy42")
+loot = "Jam"
+weight = 0.35
+minimum_value = 3
+
+[node name="HoneyLootItem" type="Node" parent="LootTable" index="3"]
+script = ExtResource("3_0wy42")
+loot = "Honey"
+weight = 0.25
+minimum_value = 3

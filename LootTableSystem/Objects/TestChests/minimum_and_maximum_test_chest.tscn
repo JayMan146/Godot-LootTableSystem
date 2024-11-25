@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://t110vn8x7l21"]
+
+[ext_resource type="PackedScene" uid="uid://cv6wfeqjdyiuf" path="res://Objects/chest.tscn" id="1_gognu"]
+[ext_resource type="Script" path="res://Code/Classes/LootTables/loot_table.gd" id="2_4obos"]
+[ext_resource type="Script" path="res://Code/Classes/LootTables/loot_item.gd" id="3_ep0rf"]
+
+[node name="MinimumAndMaximumTestChest" instance=ExtResource("1_gognu")]
+
+[node name="Sprite2D" parent="." index="1"]
+modulate = Color(0.51, 0.346375, 0.1173, 1)
+
+[node name="LootTable" type="Node" parent="." index="3"]
+script = ExtResource("2_4obos")
+loot_table_name = "MinimumAndMaximumTestChest"
+description = "Sword 30% (Max 1)
+Health Potion 30% (Min 1, Max 3)
+Mana Potion 20% (Max 2)
+Token of Enhancement 20%"
+number_of_results_range = Array[int]([3, 4])
+
+[node name="HealthPotionLootItem" type="Node" parent="LootTable" index="0"]
+script = ExtResource("3_ep0rf")
+loot = "Health Potion"
+weight = 0.3
+minimum_value = 1
+maximum_value = 3
+
+[node name="ManaPotionLootItem" type="Node" parent="LootTable" index="1"]
+script = ExtResource("3_ep0rf")
+loot = "Mana Potion"
+weight = 0.2
+maximum_value = 2
+
+[node name="SwordLootItem" type="Node" parent="LootTable" index="2"]
+script = ExtResource("3_ep0rf")
+loot = "Sword"
+weight = 0.3
+maximum_value = 1
+
+[node name="TokenOfEnhancementLootItem" type="Node" parent="LootTable" index="3"]
+script = ExtResource("3_ep0rf")
+loot = "Token Of Enhancement"
+weight = 0.2

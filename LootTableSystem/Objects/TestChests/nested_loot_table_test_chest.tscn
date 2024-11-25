@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4mjjg3ct0ta2"]
+
+[ext_resource type="PackedScene" uid="uid://cv6wfeqjdyiuf" path="res://Objects/chest.tscn" id="1_qv6up"]
+[ext_resource type="Script" path="res://Code/Classes/LootTables/loot_table.gd" id="2_qmbsr"]
+[ext_resource type="Script" path="res://Code/Classes/LootTables/loot_item.gd" id="3_h6v8k"]
+
+[node name="NestedLootTableTestChest" instance=ExtResource("1_qv6up")]
+
+[node name="Sprite2D" parent="." index="1"]
+modulate = Color(0.25138, 0.0868803, 0.728163, 1)
+
+[node name="LootTable" type="Node" parent="." index="3"]
+script = ExtResource("2_qmbsr")
+loot_table_name = "NestedLootTableTestChest"
+number_of_results_range = Array[int]([3])
+use_nested_names = true
+
+[node name="JeweleryBoxLootTable" type="Node" parent="LootTable" index="0" node_paths=PackedStringArray("nested_loot_info")]
+script = ExtResource("2_qmbsr")
+loot_table_name = "JeweleryBoxLootTable"
+number_of_results_range = Array[int]([3, 4])
+nested_loot_info = NodePath("NestedInfoLootItem")
+
+[node name="NestedInfoLootItem" type="Node" parent="LootTable/JeweleryBoxLootTable" index="0"]
+script = ExtResource("3_h6v8k")
+weight = 0.6
+maximum_value = 1
+
+[node name="PendantLootItem" type="Node" parent="LootTable/JeweleryBoxLootTable" index="1"]
+script = ExtResource("3_h6v8k")
+loot = "Pendant"
+weight = 0.3
+minimum_value = 1
+
+[node name="RingLootItem" type="Node" parent="LootTable/JeweleryBoxLootTable" index="2"]
+script = ExtResource("3_h6v8k")
+loot = "Ring"
+weight = 0.5
+minimum_value = 2
+
+[node name="GemLootItem" type="Node" parent="LootTable/JeweleryBoxLootTable" index="3"]
+script = ExtResource("3_h6v8k")
+loot = "Gem"
+weight = 0.2
+
+[node name="ToyLootItem" type="Node" parent="LootTable" index="1"]
+script = ExtResource("3_h6v8k")
+loot = "Toy"
+weight = 0.3
+maximum_value = 1
+
+[node name="CandyLootItem" type="Node" parent="LootTable" index="2"]
+script = ExtResource("3_h6v8k")
+loot = "Candy"
+weight = 0.1

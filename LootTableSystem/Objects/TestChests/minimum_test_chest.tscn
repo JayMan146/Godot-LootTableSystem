@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8o6vlusg8ds4"]
+
+[ext_resource type="PackedScene" uid="uid://cv6wfeqjdyiuf" path="res://Objects/chest.tscn" id="1_bi5ju"]
+[ext_resource type="Script" path="res://Code/Classes/LootTables/loot_table.gd" id="2_nerpd"]
+[ext_resource type="Script" path="res://Code/Classes/LootTables/loot_item.gd" id="3_utse8"]
+
+[node name="MinimumTestChest" instance=ExtResource("1_bi5ju")]
+
+[node name="Sprite2D" parent="." index="1"]
+modulate = Color(0.0912, 0.48, 0.10416, 1)
+
+[node name="LootTable" type="Node" parent="." index="3"]
+script = ExtResource("2_nerpd")
+loot_table_name = "MinimumTestChestLootTable"
+description = "90% Silver Coin
+5% Gold Coin (Min 2)
+4% Boss Key (Min 1)
+1% Platinum Coin (Min 1)"
+number_of_results_range = Array[int]([6, 9])
+
+[node name="SilverCoinLootItem" type="Node" parent="LootTable" index="0"]
+script = ExtResource("3_utse8")
+loot = "Silver Coin"
+weight = 0.9
+
+[node name="GoldCoinLootItem" type="Node" parent="LootTable" index="1"]
+script = ExtResource("3_utse8")
+loot = "Gold Coin"
+weight = 0.05
+minimum_value = 2
+
+[node name="BossKeyLootItem" type="Node" parent="LootTable" index="2"]
+script = ExtResource("3_utse8")
+loot = "Boss Key"
+weight = 0.04
+minimum_value = 1
+
+[node name="PlatinumCoinLootItem" type="Node" parent="LootTable" index="3"]
+script = ExtResource("3_utse8")
+loot = "Platinum Coin"
+weight = 0.01
+minimum_value = 1
